@@ -11,5 +11,6 @@ export interface Teszt {
     v3: string,
     v4: string,
     helyes: string,
-    kategoriaId: number
+    kategoriaId: number,
+    kategorianev: string
 }

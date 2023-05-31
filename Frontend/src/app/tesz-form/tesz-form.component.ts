@@ -16,26 +16,29 @@ export class TeszFormComponent implements OnInit, OnDestroy {
   
   tesztek: Teszt[]
   kategoriak: Kategoria[]
+  kategoria: string
   tesztekSub: Subscription
   kategoriakSub: Subscription
+  pont: number = 0
 
   ngOnInit(): void {
     this.ds.fetchTesztek()
     this.ds.fetchKategoriak()
     
-    this.tesztekSub = this.ts.tesztekChanged.subscribe((data) => {
+    this.tesztekSub = this.ts.tesztekChanged.subscribe((data: Teszt[]) => {
       this.tesztek = data
       console.log(this.tesztek);
+      console.log(data);
+      this.kategoria = this.tesztek[0].kategorianev
       
     })
 
     this.kategoriakSub = this.ts.kategoriakChanged.subscribe((data) => {
       this.kategoriak = data
       console.log(this.kategoriak);
-      console.log(this.kategoriak[0].kategoriaNev);
-      
       
     })
+
     
   }
 
@@ -47,5 +50,19 @@ export class TeszFormComponent implements OnInit, OnDestroy {
   onSubmit(form: NgForm) {
     console.log(form.value);
     
+  }
+
+  onKatSelect(kat: any) {
+    this.kategoria = kat
+    
+  }
+
+  onValasz(valasz: string, jo: string) {
+    console.log(valasz);
+    console.log(jo);
+    
+    if (valasz == jo) {
+      this.pont++
+    }
   }
 }

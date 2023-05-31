@@ -1,29 +1,31 @@
-<select>
-    <option *ngFor="let k of kategoriak">{{k.kategoriaNev}}</option>
-</select>
+
 
 <div class="container">
+    <select #kat (change)="onKatSelect(kat.value)">
+        <option *ngFor="let t of tesztek">{{t.kategorianev}}</option>
+    </select>
+    <hr>
     <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="container">
-            <div class="row" *ngFor="let t of tesztek">
-                <div class="col-md-12" style="border: 1px solid black; border-radius: 5px; margin-bottom: 15px;">
+            <div class="row" *ngFor="let t of tesztek;">
+                <div *ngIf="t.kategorianev === kategoria" class="col-md-12" style="border: 1px solid black; border-radius: 5px; margin-bottom: 15px;">
                     <div style="background-color: black; border: 1px solid black; border-radius: 15px; margin: 5px;">
                         <h1 style="color: white; padding: 5px;">{{t.kerdes}}</h1>
 
                     </div>
                         <div class="row">
-                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px; cursor: pointer;" (click)="onValasz(t.v1, t.helyes)">
                                 <p>{{t.v1}}</p>
                             </div>
-                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px; cursor: pointer" (click)="onValasz(t.v2, t.helyes)">
                                 <p>{{t.v2}}</p>
                             </div>
                         </div>   
                         <div class="row">
-                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px; cursor: pointer" (click)="onValasz(t.v3, t.helyes)">
                                 <p>{{t.v3}}</p>
                             </div>
-                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px; cursor: pointer" (click)="onValasz(t.v4, t.helyes)">
                                 <p>{{t.v4}}</p>
                             </div>
                         </div> 
@@ -32,4 +34,6 @@
             </div>
         </div>
     </form>
+    <h2>Eredmény:</h2>
+    <h3>{{pont}}</h3>
 </div>

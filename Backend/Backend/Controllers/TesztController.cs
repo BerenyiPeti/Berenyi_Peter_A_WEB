@@ -22,8 +22,12 @@ namespace Backend.Controllers
         {
             try
             {
-                var list =
-            _context.teszt.ToList();
+                var list = (from k in _context.kategoria
+                            join t in _context.teszt
+                            on k.id equals t.kategoriaId
+                            select new { t.id, t.kerdes, t.v1, t.v2, t.v3, t.v4, t.helyes, t.kategoriaId, k.kategorianev }).ToList();
+
+            //_context.teszt.ToList();
 
                 if (list.Count() == 0)
                 {
@@ -37,5 +41,8 @@ namespace Backend.Controllers
                 return StatusCode(404, e);
             }
         }
+
+
+
     }
 }
