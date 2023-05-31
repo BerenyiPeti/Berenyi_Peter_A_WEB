@@ -1,1 +1,35 @@
-<p>tesz-form works!</p>
+<select>
+    <option *ngFor="let k of kategoriak">{{k.kategoriaNev}}</option>
+</select>
+
+<div class="container">
+    <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="container">
+            <div class="row" *ngFor="let t of tesztek">
+                <div class="col-md-12" style="border: 1px solid black; border-radius: 5px; margin-bottom: 15px;">
+                    <div style="background-color: black; border: 1px solid black; border-radius: 15px; margin: 5px;">
+                        <h1 style="color: white; padding: 5px;">{{t.kerdes}}</h1>
+
+                    </div>
+                        <div class="row">
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                                <p>{{t.v1}}</p>
+                            </div>
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                                <p>{{t.v2}}</p>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                                <p>{{t.v3}}</p>
+                            </div>
+                            <div class="col-md-6" style="border: 1px solid black; border-radius: 5px">
+                                <p>{{t.v4}}</p>
+                            </div>
+                        </div> 
+                </div>
+                
+            </div>
+        </div>
+    </form>
+</div>

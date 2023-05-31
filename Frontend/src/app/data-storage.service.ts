@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { TesztService } from "./tesz-form/teszt.service";
-import { Teszt } from "./interfaces";
+import { Kategoria, Teszt } from "./interfaces";
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +13,12 @@ export class DataStorageService {
     fetchTesztek() {
         return this.http.get<Teszt[]>(URL + '/tesztek').subscribe((data: Teszt[])=> {
             this.ts.setTesztek(data)
+        })
+    }
+
+    fetchKategoriak() {
+        return this.http.get<Kategoria[]>(URL + '/kategoria').subscribe((data: Kategoria[])=> {
+            this.ts.setKategoriak(data)
         })
     }
 }
